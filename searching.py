@@ -32,11 +32,21 @@ def liner_search(sequence, number):
     return {"positions": positions, "count": count}
 
 
+def pattern_search(sequence, pattern):
+    i = 0
+    position = set()
+    while i < len(sequence) - len(pattern):
+        if sequence[i:i + len(pattern)] == pattern:
+            position.add(i)
+        i = i + 1
+    return position
+
+
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
-    search = liner_search(sequential_data, 5)
-    print(search)
+    results = pattern_search(sequential_data, "ATA")
+    print(results)
 
 if __name__ == '__main__':
     main()
